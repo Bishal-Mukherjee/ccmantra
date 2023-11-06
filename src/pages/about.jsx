@@ -4,34 +4,36 @@ import { Icon } from '@iconify/react';
 
 import { Box, Grid, Stack, Paper, Container, Typography } from '@mui/material';
 
-const ContactCard = ({ label, description, icon }) => (
-  <Box
-    component={Paper}
-    sx={{
-      height: 180,
-      p: 1,
-      transition: 'transform 0.3s',
-      '&:hover': {
-        transform: 'scale(1.08)',
-      },
-      cursor: 'pointer',
-    }}
-    elevation={5}
-  >
-    <Stack
-      sx={{ width: '100%', height: '100%' }}
-      direction="column"
-      alignItems="center"
-      justifyContent="center"
-      spacing={2}
+const ContactCard = ({ label, description, icon, href = '' }) => (
+  <a href={href || '#'} target="__blank">
+    <Box
+      component={Paper}
+      sx={{
+        height: 180,
+        p: 1,
+        transition: 'transform 0.3s',
+        '&:hover': {
+          transform: 'scale(1.08)',
+        },
+        cursor: 'pointer',
+      }}
+      elevation={5}
     >
-      <Icon icon={icon} width={30} color="#E9204F" />
-      <Typography fontFamily="Poppins">{label}</Typography>
-      <Typography fontFamily="Poppins" fontSize={11} textAlign="center">
-        {description}
-      </Typography>
-    </Stack>
-  </Box>
+      <Stack
+        sx={{ width: '100%', height: '100%' }}
+        direction="column"
+        alignItems="center"
+        justifyContent="center"
+        spacing={2}
+      >
+        <Icon icon={icon} width={30} color="#E9204F" />
+        <Typography fontFamily="Poppins">{label}</Typography>
+        <Typography fontFamily="Poppins" fontSize={11} textAlign="center">
+          {description}
+        </Typography>
+      </Stack>
+    </Box>
+  </a>
 );
 
 const About = () => {
@@ -41,6 +43,7 @@ const About = () => {
       label: 'Address',
       description: 'Opposite Chandra Store, Martindle Bridge, Shri Nagar Road, Ajmer',
       icon: 'mdi:map-marker-multiple',
+      href: 'https://maps.app.goo.gl/bG3QKR6rfdTjcUvR7',
     },
     { id: 2, label: 'Phone', description: '+91 9694501023', icon: 'mdi:phone' },
     {
@@ -48,6 +51,7 @@ const About = () => {
       label: 'Email',
       description: 'ccmantra777@gmail.Com',
       icon: 'mdi:email',
+      href: 'mailto:ccmantra777@gmail.com',
     },
   ];
   return (

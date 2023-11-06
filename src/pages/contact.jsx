@@ -2,7 +2,7 @@
 import * as yup from 'yup';
 import Lottie from 'react-lottie';
 import { useFormik } from 'formik';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { LoadingButton } from '@mui/lab';
 import { Box, Grid, Alert, styled, Container, TextField } from '@mui/material';
@@ -64,6 +64,7 @@ const ContactIndex = () => {
       try {
         const response = await register(formik.values);
         if (response.success) {
+          formik.resetForm();
           setMessage({ type: 'success', text: 'Response stored successfully' });
         }
         if (response.error) {
@@ -75,6 +76,12 @@ const ContactIndex = () => {
       }
     },
   });
+
+  useEffect(() => {
+    setTimeout(() => {
+      setMessage({ type: '', text: '' });
+    }, 3000);
+  }, [message]);
 
   return (
     <Container>

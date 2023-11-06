@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import * as yup from 'yup';
 import { useFormik } from 'formik';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TypeAnimation } from 'react-type-animation';
 
 import { Grid, Alert, Paper, Stack, styled, Button, TextField, Typography } from '@mui/material';
@@ -60,6 +60,7 @@ const BrandingComponent = () => {
       try {
         const response = await interestedUser(formik.values);
         if (response.success) {
+          formik.resetForm();
           setMessage({ type: 'success', text: 'Response stored successfully' });
         }
         if (response.error) {
@@ -72,13 +73,22 @@ const BrandingComponent = () => {
     },
   });
 
+  useEffect(() => {
+    setTimeout(() => {
+      setMessage({ type: '', text: '' });
+    }, 3000);
+  }, [message]);
+
   return (
     <Stack sx={{ width: '100%' }} direction="row" justifyContent="center">
       <Paper sx={{ width: '100%', p: 5 }}>
         <Grid container spacing={10}>
           {mdUp && (
             <Grid item md={5} mt={-2} display="flex" justifyContent="flex-end">
-              <img src="/assets/ccmantraapp.png" alt="" height={335} />
+              <Stack direction="row" alignItems="center" spacing={-5}>
+                <img src="/assets/gauravchaudhary2.png" alt="" height={275} />
+                <img src="/assets/ccmantraapp.png" alt="" height={335} />
+              </Stack>
             </Grid>
           )}
           <Grid item md={5}>

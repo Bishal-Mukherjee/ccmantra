@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Icon } from '@iconify/react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
@@ -28,6 +28,7 @@ export default function Header() {
   const lgUp = useResponsive('up', 'lg');
 
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   const navlinks = [
     { id: 1, label: 'Home', location: '/' },
@@ -92,7 +93,7 @@ export default function Header() {
                 <Typography
                   color="black"
                   fontFamily="Poppins"
-                  fontWeight={500}
+                  fontWeight={pathname === nl.location ? 700 : 500}
                   sx={{
                     ':hover': {
                       color: 'black',
