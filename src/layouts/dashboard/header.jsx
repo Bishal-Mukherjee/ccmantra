@@ -87,7 +87,16 @@ export default function Header() {
             {navlinks.map((nl) => (
               <Link
                 key={nl.id}
-                sx={{ textDecoration: 'none', cursor: 'pointer' }}
+                sx={{
+                  textDecoration: 'none',
+                  cursor: 'pointer',
+                  ...(nl.id === 1 && {
+                    bgcolor: '#E9204F',
+                    p: 1,
+                    color: 'white',
+                    borderRadius: 1,
+                  }),
+                }}
                 onClick={() => handleNavigation(nl.location)}
               >
                 <Typography
@@ -95,6 +104,9 @@ export default function Header() {
                   fontFamily="Poppins"
                   fontWeight={pathname === nl.location ? 700 : 500}
                   sx={{
+                    ...(nl.id === 1 && {
+                      color: 'white',
+                    }),
                     ':hover': {
                       color: 'black',
                       textDecoration: 'underline',

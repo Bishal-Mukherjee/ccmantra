@@ -1,7 +1,11 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 
-import { Card, Grid, Container, Typography, CardContent } from '@mui/material';
+import { Box, Card, Grid, Container, Typography, CardContent } from '@mui/material';
+
+import { useResponsive } from 'src/hooks/use-responsive';
+
+import WhatsAppCom from 'src/components/whatsapp-com';
 
 const LectureCard = ({ label, link }) => (
   <Card sx={{ p: 2 }}>
@@ -22,6 +26,7 @@ const LectureCard = ({ label, link }) => (
 );
 
 const LecturesIndex = () => {
+  const mdUp = useResponsive('up', 'md');
   const lectures = [
     {
       id: 1,
@@ -51,15 +56,34 @@ const LecturesIndex = () => {
     },
   ];
   return (
-    <Container>
-      <Grid container spacing={2}>
-        {lectures.map((l) => (
-          <Grid item md={4} sm={12} xs={12} key={l.id}>
-            <LectureCard {...l} />
-          </Grid>
-        ))}
-      </Grid>
-    </Container>
+    <>
+      <Box
+        sx={{
+          width: '100%',
+          height: 120,
+          bgcolor: '#E9204F',
+          display: 'flex',
+          justifyContent: 'flex-end',
+          alignItems: 'center',
+          pr: 5,
+        }}
+      >
+        <Typography fontFamily="Poppins" color="white" fontSize={mdUp ? 30 : 25}>
+          Lectures that serve you
+        </Typography>
+      </Box>
+      <Container>
+        <Grid container spacing={2}>
+          {lectures.map((l) => (
+            <Grid item md={4} sm={12} xs={12} key={l.id}>
+              <LectureCard {...l} />
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+
+      <WhatsAppCom />
+    </>
   );
 };
 

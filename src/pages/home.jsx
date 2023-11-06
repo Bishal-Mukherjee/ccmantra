@@ -1,5 +1,7 @@
 import React, { lazy } from 'react';
 
+import WhatsAppCom from 'src/components/whatsapp-com';
+
 const HomeCarousel = lazy(() => import('src/components/home/home-carousel'));
 const BrandingComponent = lazy(() =>
   import('src/components/home/branding-component/branding-component')
@@ -15,6 +17,7 @@ const HomeIndex = () => (
     <ExamCategories />
     <Testimonials />
     <GetContent />
+    <WhatsAppCom />
   </>
 );
 

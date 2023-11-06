@@ -1,7 +1,21 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 
-import { Card, Link, Grid, Stack, Button, CardMedia, Container, Typography } from '@mui/material';
+import {
+  Box,
+  Card,
+  Link,
+  Grid,
+  Stack,
+  Button,
+  CardMedia,
+  Container,
+  Typography,
+} from '@mui/material';
+
+import { useResponsive } from 'src/hooks/use-responsive';
+
+import WhatsAppCom from 'src/components/whatsapp-com';
 
 const CourseCard = ({ title, image, price, link }) => (
   <Card
@@ -47,6 +61,7 @@ const CourseCard = ({ title, image, price, link }) => (
 );
 
 const CourseIndex = () => {
+  const mdUp = useResponsive('up', 'md');
   const courses = [
     {
       id: 1,
@@ -98,18 +113,34 @@ const CourseIndex = () => {
     },
   ];
   return (
-    <Container mt={5}>
-      <Typography fontFamily="Poppins" fontSize={30} fontWeight={600}>
-        Courses with offer
-      </Typography>
-      <Grid container spacing={2} mt={1}>
-        {courses.map((c) => (
-          <Grid item md={4} sm={12} xs={12} key={c.id}>
-            <CourseCard {...c} />
-          </Grid>
-        ))}
-      </Grid>
-    </Container>
+    <>
+      <Box
+        sx={{
+          width: '100%',
+          height: 120,
+          bgcolor: '#E9204F',
+          display: 'flex',
+          justifyContent: 'flex-end',
+          alignItems: 'center',
+          pr: 5,
+        }}
+      >
+        <Typography fontFamily="Poppins" color="white" fontSize={mdUp ? 30 : 25}>
+          Courses we offer
+        </Typography>
+      </Box>
+      <Container mt={5}>
+        <Grid container spacing={2} mt={1}>
+          {courses.map((c) => (
+            <Grid item md={4} sm={12} xs={12} key={c.id}>
+              <CourseCard {...c} />
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+
+      <WhatsAppCom />
+    </>
   );
 };
 

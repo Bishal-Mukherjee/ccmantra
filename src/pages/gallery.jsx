@@ -1,8 +1,13 @@
 import React from 'react';
 
-import { Grid, Container } from '@mui/material';
+import { Box, Grid, Container, Typography } from '@mui/material';
+
+import { useResponsive } from 'src/hooks/use-responsive';
+
+import WhatsAppCom from 'src/components/whatsapp-com';
 
 const GalleryIndex = () => {
+  const mdUp = useResponsive('up', 'md');
   const images = [
     {
       id: 1,
@@ -36,15 +41,34 @@ const GalleryIndex = () => {
     },
   ];
   return (
-    <Container>
-      <Grid container spacing={2}>
-        {images.map((i) => (
-          <Grid key={i.id} item md={4} xs={12}>
-            <img src={i.image} alt="" style={{ borderRadius: 2 }} />
-          </Grid>
-        ))}
-      </Grid>
-    </Container>
+    <>
+      <Box
+        sx={{
+          width: '100%',
+          height: 120,
+          bgcolor: '#E9204F',
+          display: 'flex',
+          justifyContent: 'flex-end',
+          alignItems: 'center',
+          pr: 5,
+        }}
+      >
+        <Typography fontFamily="Poppins" color="white" fontSize={mdUp ? 30 : 25}>
+          Memorable Moments
+        </Typography>
+      </Box>
+      <Container sx={{ mt: 2 }}>
+        <Grid container spacing={2}>
+          {images.map((i) => (
+            <Grid key={i.id} item md={4} xs={12}>
+              <img src={i.image} alt="" style={{ borderRadius: 2 }} />
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+
+      <WhatsAppCom />
+    </>
   );
 };
 

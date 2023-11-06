@@ -8,11 +8,31 @@ import { useResponsive } from 'src/hooks/use-responsive';
 const Footer = () => {
   const lgUp = useResponsive('up', 'lg');
   const socialLinks = [
-    { id: 1, link: 'https://www.facebook.com/ccmantraclassesajmer', icon: 'mingcute:meta-fill' },
-    { id: 2, link: 'https://t.me/ccmantra', icon: 'la:telegram' },
-    { id: 3, link: 'https://www.instagram.com/ccmantraclassesajmer', icon: 'ri:instagram-fill' },
-    { id: 4, link: 'https://wa.me/9119129138', icon: 'ri:whatsapp-fill' },
-    { id: 5, link: 'https://www.youtube.com/@ccmantraeducation', icon: 'mingcute:youtube-fill' },
+    {
+      id: 1,
+      link: 'https://www.facebook.com/ccmantraclassesajmer',
+      icon: 'mingcute:meta-fill',
+      label: 'Meta',
+    },
+    { id: 2, link: 'https://t.me/ccmantra', icon: 'la:telegram', label: 'Telegram' },
+    {
+      id: 3,
+      link: 'https://www.instagram.com/ccmantraclassesajmer',
+      icon: 'ri:instagram-fill',
+      label: 'Instagram',
+    },
+    {
+      id: 4,
+      link: 'https://api.whatsapp.com/send/?phone=9119129138&text&type=phone_number&app_absent=0',
+      icon: 'ri:whatsapp-fill',
+      label: 'WhatsApp',
+    },
+    {
+      id: 5,
+      link: 'https://www.youtube.com/@ccmantraeducation',
+      icon: 'mingcute:youtube-fill',
+      label: 'YouTube',
+    },
   ];
 
   return (
@@ -66,14 +86,27 @@ const Footer = () => {
               mt={10}
             >
               {socialLinks.map((s) => (
-                <IconButton href={s.link} key={s.id}>
-                  <Icon
-                    icon={s.icon}
-                    width={30}
-                    color="black"
-                    style={{ backgroundColor: 'white', padding: 5, borderRadius: 50 }}
-                  />
-                </IconButton>
+                <Stack
+                  direction="row"
+                  alignItems="center"
+                  justifyContent="flex-start"
+                  spacing={2}
+                  width={125}
+                >
+                  <IconButton href={s.link} key={s.id}>
+                    <Icon
+                      icon={s.icon}
+                      width={30}
+                      color="black"
+                      style={{ backgroundColor: 'white', padding: 5, borderRadius: 50 }}
+                    />
+                  </IconButton>
+                  {lgUp && (
+                    <Typography fontFamily="Poppins" fontWeight={500} color="white">
+                      {s.label}
+                    </Typography>
+                  )}
+                </Stack>
               ))}
             </Stack>
           </Grid>
